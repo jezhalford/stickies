@@ -1,43 +1,29 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<?php
+header('Content-type: application/pdf');
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
+$spec = array(
+    'pageSize' => 'A4',
+    'columns' => 5,
+    'margins' => array(
+        'top' => 10.7,
+        'bottom' => 10.7,
+        'left' => 5.75,
+        'right' => 5.75
+    ),
+    'padding' => array(
+        'horizontal' => 2,
+        'vertical' => 0
+    ),
+    'labels' => array(
+        'height' => 21.2,
+        'width' => 38.1
+    ),
+    'fontSize' => 8
+    
+);
 
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
+$data = array(
+    "Mr Jones\n 12 This Street\nHellotown"
+);
 
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
-</style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
-
-    <h3>This is your project's main page</h3>
-
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
-    </div>
-</div>
+echo $this->labels($spec, $data);
