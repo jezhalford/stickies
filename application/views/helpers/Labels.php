@@ -40,23 +40,38 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
         
         $this->_setCursorPositions();
         
-        $this->_drawLabels();
+        $this->_renderLabels($data);
         
         return $this->_pdf->render();
         
     }
     
-    protected function _drawLabels() {
+    protected function _renderLabels($data) {
         
-        
-        foreach($this->_cursors as $cursor) {
+        if(is_array($data)) {
             
-            
-            $this->_page->drawText('hello', $cursor['x'], $cursor['y']);
+            foreach($data as $i => $datum) {
+                $this->_writeLines($datum, $this->_cursors[$i]['x'], $this->_cursors[$i]['y']);
+            }
             
         }
+        else {
+            foreach($this->_cursors as $cursor) {
+
+                $this->_writeLines($data, $cursor['x'], $cursor['y']);
+
+            }
+        }
+    }
+    
+    protected function _writeLines($text, $x, $y) {
         
+        $lines = explode("\n", $text);
         
+        foreach($lines as $i => $line) {
+            $this->_page->drawText($line, $x, $y - ($i *
+                    $this->_getFontHeight($this->_page->getFont(), $this->_page->getFontSize())));
+        }
         
     }
     
