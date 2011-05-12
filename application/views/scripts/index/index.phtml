@@ -4,6 +4,7 @@ header('Content-type: application/pdf');
 $spec = array(
     'pageSize' => 'A4',
     'columns' => 5,
+    'rows' => 13,
     'margins' => array(
         'top' => 10.7,
         'bottom' => 10.7,
@@ -11,12 +12,13 @@ $spec = array(
         'right' => 5.75
     ),
     'padding' => array(
-        'horizontal' => 2,
+        'horizontal' => 2.5,
         'vertical' => 0
     ),
     'labels' => array(
         'height' => 21.2,
-        'width' => 38.1
+        'width' => 38.1,
+        'padding' => 2
     ),
     'fontSize' => 8
     
