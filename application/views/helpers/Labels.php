@@ -33,11 +33,17 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
         
         $labelsPerPage = $this->_rows * $this->_columns;
         
-        $paginatedData = array_chunk($data, $labelsPerPage);
-        
-        foreach($paginatedData as $pageData) {
-            $this->_renderPage($pageData);
+        if(is_array($data)) {
+            $paginatedData = array_chunk($data, $labelsPerPage);
+                foreach($paginatedData as $pageData) {
+                $this->_renderPage($pageData);
+            }
         }
+        else {
+            $this->_renderPage($data);
+        }
+        
+        
         
         return $this->_pdf->render();
         
@@ -64,10 +70,7 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
             
             foreach($data as $i => $datum) {
                 
-                $address = $datum['address'];
-                $meta = $datum['meta'];
-                
-                $this->_writeLines($address, $this->_cursors[$i]['x'], $this->_cursors[$i]['y']);
+                $this->_writeLines($datum, $this->_cursors[$i]['x'], $this->_cursors[$i]['y']);
             }
             
         }
@@ -203,7 +206,6 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
             // shunt downwards by the height of the font - coordinates for fonts 
             // are set by their baseline.
             $y -= $fontHeight;
-            
             
             for($i = 0; $i < $this->_columns; $i++) { // columns...
 

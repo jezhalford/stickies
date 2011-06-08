@@ -24,28 +24,8 @@ $spec = array(
 );
 
 $data = array(
-    array(
-        'address' => "Mr Jones\n12 This Street\nHellotown",
-        'meta' => '123456'
-    ),
-    array(
-        'address' => "Mr Smith\n13 This Street\nHellotown",
-        'meta' => '7446'
-    ),
-    array(
-        'address' => "Mr Brown\n14 This Street\nHellotown",
-        'meta' => '44'
-    ),
-    array(
-        'address' => "Mr White\n15 This Street\nHellotown",
-        'meta' => '343'
-    ),
-    array(
-        'address' => "Mr White\n15 This Street\nHellotown",
-        'meta' => '343'
-    )
+    "123456\n\nMr Jones\n12 This Street\nHellotown\nSomecity\nPC1 1PC\nUnited Kingdom\nVeryLongAddress\nHere",
+    "3243\n\nMr Smith\n12 This Street\nHellotown\nSomecity\nPC1 1PC\nUnited Kingdom\nVeryLongAddress\nHere"
 );
-
-//    "Mr Jones\n12 This Street\nHellotown";
 
 echo $this->labels($spec, $data);
