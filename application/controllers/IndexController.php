@@ -3,14 +3,14 @@
 class IndexController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
     public function indexAction()
     {
-        // action body
+        $spec = Zend_Json_Decoder::decode($this->_getParam('spec'));
+        $data = Zend_Json_Decoder::decode($this->_getParam('data'));
+        
+        $this->view->assign('spec', $spec);
+        $this->view->assign('data', $data);
+        
     }
 
 

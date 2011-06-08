@@ -1,31 +1,3 @@
 <?php
 header('Content-type: application/pdf');
-$spec = array(
-    'pageSize' => 'A4',
-    'columns' => 3,
-    'rows' => 7,
-    'margins' => array(
-        'top' => 15.15,
-        'bottom' => 15.15,
-        'left' => 9,
-        'right' => 7.75
-    ),
-    'padding' => array(
-        'horizontal' => 2,
-        'vertical' => 0
-    ),
-    'labels' => array(
-        'height' => 38.1,
-        'width' => 63.5,
-        'padding' => 2
-    ),
-    'fontSize' => 8
-    
-);
-
-$data = array(
-    "123456\n\nMr Jones\n12 This Street\nHellotown\nSomecity\nPC1 1PC\nUnited Kingdom\nVeryLongAddress\nHere",
-    "3243\n\nMr Smith\n12 This Street\nHellotown\nSomecity\nPC1 1PC\nUnited Kingdom\nVeryLongAddress\nHere"
-);
-
-echo $this->labels($spec, $data);
+echo $this->labels($this->spec, $this->data);
