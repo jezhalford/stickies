@@ -31,18 +31,30 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
         
         $this->_pdf = new Zend_Pdf();
         
-        $this->_page = new Zend_Pdf_Page($this->_pageSize);
+        $labelsPerPage = $this->_rows * $this->_columns;
         
-        $this->_pdf->pages[] = $this->_page;
+        $paginatedData = array_chunk($data, $labelsPerPage);
+        
+        foreach($paginatedData as $pageData) {
+            $this->_renderPage($pageData);
+        }
+        
+        return $this->_pdf->render();
+        
+    }
+    
+    protected function _renderPage($data) {
+        $this->_page = new Zend_Pdf_Page($this->_pageSize);
         
         $this->_page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA),
                 $this->_fontSize);
         
         $this->_setCursorPositions();
         
+        $this->_pdf->pages[] = $this->_page;
+        
         $this->_renderLabels($data);
         
-        return $this->_pdf->render();
         
     }
     
@@ -51,7 +63,11 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
         if(is_array($data)) {
             
             foreach($data as $i => $datum) {
-                $this->_writeLines($datum, $this->_cursors[$i]['x'], $this->_cursors[$i]['y']);
+                
+                $address = $datum['address'];
+                $meta = $datum['meta'];
+                
+                $this->_writeLines($address, $this->_cursors[$i]['x'], $this->_cursors[$i]['y']);
             }
             
         }
@@ -120,7 +136,6 @@ class Zend_View_Helper_Labels extends Zend_View_Helper_Abstract {
                     $this->_margins[$k] = $this->_mmToPts($v);
                 }
             }
-            
         }
         else {
             throw new Zend_View_Exception('No margins specified');
