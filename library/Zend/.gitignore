@@ -1,0 +1,4 @@
+# Ignore the contents of this folder for now -
+# we don't want to commit all of Zend Framework.
+
+*
