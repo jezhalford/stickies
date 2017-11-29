@@ -24,6 +24,8 @@ identify -verbose  $SCRIPTPATH/diff.png | grep -E "(standard deviation|kurtosis|
 
 echo
 echo
+diff $SCRIPTPATH/actual.pdf $SCRIPTPATH/expected.pdf
+echo
 
 # Compare the output of the identify step with expected values for a blank image
 (diff -w $SCRIPTPATH/expected-identify $SCRIPTPATH/a && echo "TEST PASSED!") || echo "TEST FAILED!"
