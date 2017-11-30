@@ -1,4 +1,5 @@
 <?php
+parse_str($argv[1], $_POST);
 
 // Define path to application directory
 defined('APPLICATION_PATH')
