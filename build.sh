@@ -2,9 +2,12 @@
 
 rm -rf ./built || :
 
-mkdir ./built
-cp -r ./public/ ./built
-cp -r ./library/ ./built
-cp -r ./application/ ./builti
+mkdir -p ./built/library && mkdir -p ./built/application && mkdir ./built/public
+cp -r ./public/ ./built/public
+cp -r ./library/ ./built/library
+cp -r ./application/ ./built/application
 
-
+cat << EOF > ./built/index.php
+<?php
+require 'public/index.php';
+EOF
